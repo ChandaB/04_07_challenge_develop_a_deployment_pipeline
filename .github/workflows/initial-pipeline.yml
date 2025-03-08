@@ -34,7 +34,7 @@ jobs:
       - run: echo "- Simulate and test the artifact"
 
   staging:
-    needs: test-artifact
+    needs: [development, test-artifact]
     runs-on: ubuntu-latest
     steps:
       - run: |
@@ -49,7 +49,7 @@ jobs:
       - run: echo "- Test the staging environment"
         
   production:
-    needs: test-staging
+    needs: [staging, test-staging]
     runs-on: ubuntu-latest
     steps:
       - run: |
