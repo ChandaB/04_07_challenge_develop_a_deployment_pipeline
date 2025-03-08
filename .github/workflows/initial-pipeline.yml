@@ -14,12 +14,14 @@ jobs:
       - run: echo "- Lint the code and run unit tests"
         
   build:
+    needs: integration
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - run: echo "- Build the artifact"
 
   development:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - run: echo "- Auto-deploy the artifact to the development environment"
